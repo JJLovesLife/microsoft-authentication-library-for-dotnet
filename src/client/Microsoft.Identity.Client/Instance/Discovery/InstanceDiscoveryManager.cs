@@ -29,7 +29,7 @@ namespace Microsoft.Identity.Client.Instance.Discovery
     internal class InstanceDiscoveryManager : IInstanceDiscoveryManager
     {
         private readonly IHttpManager _httpManager;
-        private readonly IUserMetadataProvider _userMetadataProvider;
+        private readonly IUserMetadataProvider _userMetadataProvider;   // null
         private readonly IKnownMetadataProvider _knownMetadataProvider;
         private readonly INetworkCacheMetadataProvider _networkCacheMetadataProvider;
         private readonly INetworkMetadataProvider _networkMetadataProvider;

@@ -196,7 +196,7 @@ namespace Microsoft.Identity.Client
             RequestContext requestContext,
             ITokenCacheInternal cache)
         {
-            AuthenticationRequestParameters requestParams = await base.CreateRequestParametersAsync(commonParameters, requestContext, cache).ConfigureAwait(false);
+            AuthenticationRequestParameters requestParams = await base/*ApplicationBase*/.CreateRequestParametersAsync(commonParameters, requestContext, cache).ConfigureAwait(false);
             return requestParams;
         }
     }

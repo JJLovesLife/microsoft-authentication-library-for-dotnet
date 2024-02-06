@@ -33,7 +33,7 @@ namespace Microsoft.Identity.Client
             Config = configuration;
         }
 
-        internal ApplicationConfiguration Config { get; }
+        internal ApplicationConfiguration Config { get; } /* Init as new ApplicationConfiguration(MsalClientType.ConfidentialClient)*/
 
         /// <summary>
         /// Uses a specific <see cref="IMsalHttpClientFactory"/> to communicate

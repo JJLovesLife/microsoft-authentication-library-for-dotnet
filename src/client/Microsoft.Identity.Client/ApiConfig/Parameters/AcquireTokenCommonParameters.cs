@@ -19,7 +19,7 @@ namespace Microsoft.Identity.Client.ApiConfig.Parameters
         public Guid CorrelationId { get; set; }
         public Guid UserProvidedCorrelationId { get; set; }
         public bool UseCorrelationIdFromUser { get; set; }
-        public IEnumerable<string> Scopes { get; set; }
+        public IEnumerable<string> Scopes { get; set; } // TokenRequestContext.Scopes
         public IDictionary<string, string> ExtraQueryParameters { get; set; }
         public string Claims { get; set; }
         public AuthorityInfo AuthorityOverride { get; set; }

@@ -18,9 +18,9 @@ namespace Microsoft.Identity.Client.ApiConfig.Executors
 #endif
     internal class ConfidentialClientExecutor : AbstractExecutor, IConfidentialClientApplicationExecutor
     {
-        private readonly ConfidentialClientApplication _confidentialClientApplication;
+        private readonly ConfidentialClientApplication _confidentialClientApplication; /* _this */
 
-        public ConfidentialClientExecutor(IServiceBundle serviceBundle, ConfidentialClientApplication confidentialClientApplication)
+        public ConfidentialClientExecutor(IServiceBundle serviceBundle /* _this.ServiceBundle */, ConfidentialClientApplication confidentialClientApplication /* _this */)
             : base(serviceBundle)
         {
             ClientApplicationBase.GuardMobileFrameworks();
@@ -49,7 +49,7 @@ namespace Microsoft.Identity.Client.ApiConfig.Executors
             return await handler.RunAsync(cancellationToken).ConfigureAwait(false);
         }
 
-        public async Task<AuthenticationResult> ExecuteAsync(
+        public async Task<AuthenticationResult> ExecuteAsync( // <--
             AcquireTokenCommonParameters commonParameters,
             AcquireTokenForClientParameters clientParameters,
             CancellationToken cancellationToken)

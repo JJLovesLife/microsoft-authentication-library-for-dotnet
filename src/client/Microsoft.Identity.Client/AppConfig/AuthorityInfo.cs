@@ -505,7 +505,7 @@ namespace Microsoft.Identity.Client
             /// known issue: https://github.com/AzureAD/microsoft-authentication-library-for-dotnet/issues/2929
             /// </summary>
             public static async Task<Authority> CreateAuthorityForRequestAsync(RequestContext requestContext,
-                AuthorityInfo requestAuthorityInfo,
+                AuthorityInfo requestAuthorityInfo, /* commonParameters.AuthorityOverride */
                 IAccount account = null)
             {
                 var configAuthority = requestContext.ServiceBundle.Config.Authority;
@@ -590,7 +590,7 @@ namespace Microsoft.Identity.Client
                 }
             }
 
-            internal static Authority CreateAuthorityWithTenant(Authority authority, string tenantId, bool forceSpecifiedTenant)
+            internal static Authority CreateAuthorityWithTenant(Authority authority /* Config.Authority*/, string tenantId /* null */, bool forceSpecifiedTenant /* false */)
             {                
                 string tenantedAuthority = authority.GetTenantedAuthority(tenantId, forceSpecifiedTenant);
 

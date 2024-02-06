@@ -71,7 +71,7 @@ namespace Microsoft.Identity.Client.Internal
         public IPlatformProxy PlatformProxy { get; private set; }
 
         /// <inheritdoc/>
-        public ApplicationConfiguration Config { get; }
+        public ApplicationConfiguration Config { get; } // _this.Config
 
         public IDeviceAuthManager DeviceAuthManager { get; }
 

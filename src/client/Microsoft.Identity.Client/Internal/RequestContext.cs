@@ -15,9 +15,9 @@ namespace Microsoft.Identity.Client.Internal
 {
     internal class RequestContext
     {
-        public Guid CorrelationId { get; }
+        public Guid CorrelationId { get; } /* commonParameters.CorrelationId */
         public ILoggerAdapter Logger { get; }
-        public IServiceBundle ServiceBundle { get; }
+        public IServiceBundle ServiceBundle { get; } /* _this.ServiceBundle */
 
         /// <summary>
         /// One and only one ApiEvent is associated with each request.

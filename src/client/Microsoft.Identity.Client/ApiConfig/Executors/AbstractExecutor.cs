@@ -17,7 +17,7 @@ namespace Microsoft.Identity.Client.ApiConfig.Executors
             ServiceBundle = serviceBundle;
         }
 
-        public IServiceBundle ServiceBundle { get; }
+        public IServiceBundle ServiceBundle { get; } /* _this.ServiceBundle */
 
         protected RequestContext CreateRequestContextAndLogVersionInfo(Guid correlationId, CancellationToken userCancellationToken = default)
         {

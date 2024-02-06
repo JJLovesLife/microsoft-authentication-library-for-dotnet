@@ -28,8 +28,8 @@ namespace Microsoft.Identity.Client.Internal.Requests
         private string _loginHint;
 
         public AuthenticationRequestParameters(
-            IServiceBundle serviceBundle,
-            ITokenCacheInternal tokenCache,
+            IServiceBundle serviceBundle, /* _this.ServiceBundle */
+            ITokenCacheInternal tokenCache, /* _this.UserTokenCacheInternal */
             AcquireTokenCommonParameters commonParameters,
             RequestContext requestContext,
             Authority initialAuthority,
@@ -89,7 +89,7 @@ namespace Microsoft.Identity.Client.Internal.Requests
         #endregion
 
         public ICacheSessionManager CacheSessionManager { get; }
-        public HashSet<string> Scope { get; }
+        public HashSet<string> Scope { get; } // new(TokenRequestContext.Scopes)
         public Uri RedirectUri { get; set; }
 
         public IDictionary<string, string> ExtraQueryParameters { get; }

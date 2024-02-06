@@ -37,7 +37,7 @@ namespace Microsoft.Identity.Client.Cache
         public RequestContext RequestContext { get; }
 
         #region ICacheSessionManager implementation
-        public ITokenCacheInternal TokenCacheInternal { get; }
+        public ITokenCacheInternal TokenCacheInternal { get; }  // _this.AppTokenCacheInternal
 
         public async Task<MsalAccessTokenCacheItem> FindAccessTokenAsync()
         {

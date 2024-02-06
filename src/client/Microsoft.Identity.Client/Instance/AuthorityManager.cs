@@ -51,6 +51,7 @@ namespace Microsoft.Identity.Client.Instance
             {
                 // This will make a network call unless instance discovery is cached, but this OK
                 // GetAccounts and AcquireTokenSilent do not need this
+                // MSI: InstanceDiscoveryManager.CreateEntryForSingleAuthority
                 _metadata = await
                                 _requestContext.ServiceBundle.InstanceDiscoveryManager.GetMetadataEntryAsync(
                                     _initialAuthority.AuthorityInfo,

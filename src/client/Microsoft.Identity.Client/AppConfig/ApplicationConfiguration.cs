@@ -22,6 +22,7 @@ using Microsoft.IdentityModel.Abstractions;
 
 namespace Microsoft.Identity.Client
 {
+    // _opt is ManagedIdentityClientOptions
     internal sealed class ApplicationConfiguration : IAppConfig
     {
         public ApplicationConfiguration(MsalClientType applicationType) 
@@ -94,15 +95,20 @@ namespace Microsoft.Identity.Client
 
         public CacheOptions AccessorOptions { get; set; }
 
+        // new AadAuthority(AuthorityInfo.FromAadAuthority(
+        //  (_opt.Options?.AuthorityHost ?? AzureAuthorityHosts.GetDefault()).AbsoluteUri,
+        //  "MANAGED-IDENTITY-RESOURCE-TENENT",
+        //  false)
+        // )
         public Authority Authority { get; internal set; }
-        public string ClientId { get; internal set; }
+        public string ClientId { get; internal set; }   // _opt.ClientId ?? "SYSTEM-ASSIGNED-MANAGED-IDENTITY"
         public string RedirectUri { get; internal set; }
-        public bool EnablePiiLogging { get; internal set; }
+        public bool EnablePiiLogging { get; internal set; } // _opt.Options?.IsUnsafeSupportLoggingEnabled ?? false
         public LogLevel LogLevel { get; internal set; } = LogLevel.Info;
         public bool IsDefaultPlatformLoggingEnabled { get; internal set; }
-        public IMsalHttpClientFactory HttpClientFactory { get; internal set; }
+        public IMsalHttpClientFactory HttpClientFactory { get; internal set; }  // new HttpPipelineClientFactory(_opt.Pipeline.HttpPipeline)
         public bool IsExtendedTokenLifetimeEnabled { get; set; }
-        public LogCallback LoggingCallback { get; internal set; }
+        public LogCallback LoggingCallback { get; internal set; }   // MasalClientBase.LogMsal
         public IIdentityLogger IdentityLogger { get; internal set; }
         public string Component { get; internal set; }
         public IDictionary<string, string> ExtraQueryParameters { get; internal set; } = new Dictionary<string, string>();
@@ -120,9 +126,9 @@ namespace Microsoft.Identity.Client
 
         public ManagedIdentityId ManagedIdentityId { get; internal set; }
 
-        public bool IsManagedIdentity { get; }
+        public bool IsManagedIdentity { get; }  // false
 
-        public Func<AppTokenProviderParameters, Task<AppTokenProviderResult>> AppTokenProvider;
+        public Func<AppTokenProviderParameters, Task<AppTokenProviderResult>> AppTokenProvider; // ManagedIdentityClient.AppTokenProviderImpl
 
 #region ClientCredentials
 
@@ -202,8 +208,8 @@ namespace Microsoft.Identity.Client
         public ITokenCacheInternal AppTokenCacheInternalForTest { get; set; }
 
         public IDeviceAuthManager DeviceAuthManagerForTest { get; set; }
-        public bool IsConfidentialClient { get; }
-        public bool IsInstanceDiscoveryEnabled { get; internal set; } = true;
+        public bool IsConfidentialClient { get; }   // true
+        public bool IsInstanceDiscoveryEnabled { get; internal set; } = true;   // false
         #endregion
 
     }

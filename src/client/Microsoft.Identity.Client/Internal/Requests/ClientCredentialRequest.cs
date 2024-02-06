@@ -16,7 +16,7 @@ namespace Microsoft.Identity.Client.Internal.Requests
 {
     internal class ClientCredentialRequest : RequestBase
     {
-        private readonly AcquireTokenForClientParameters _clientParameters;
+        private readonly AcquireTokenForClientParameters _clientParameters; // Parameters
         private static readonly SemaphoreSlim s_semaphoreSlim = new SemaphoreSlim(1, 1);
 
         public ClientCredentialRequest(
@@ -101,6 +101,7 @@ namespace Microsoft.Identity.Client.Internal.Requests
             return authResult;
         }
 
+        // call ManagedIdentityClient.AppTokenProviderImpl
         private async Task<AuthenticationResult> GetAccessTokenAsync(
             CancellationToken cancellationToken, 
             ILoggerAdapter logger)
@@ -185,6 +186,7 @@ namespace Microsoft.Identity.Client.Internal.Requests
             return authResult;
         }
 
+        // expire buffer = 5 mins, see: FilterTokensByExpiry
         private async Task<MsalAccessTokenCacheItem> GetCachedAccessTokenAsync()
         {
             MsalAccessTokenCacheItem cachedAccessTokenItem = await CacheManager.FindAccessTokenAsync().ConfigureAwait(false);

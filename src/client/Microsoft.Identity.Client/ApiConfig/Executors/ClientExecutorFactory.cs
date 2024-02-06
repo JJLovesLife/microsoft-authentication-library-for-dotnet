@@ -19,7 +19,7 @@ namespace Microsoft.Identity.Client.ApiConfig.Executors
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]  // hide confidential client on mobile
 #endif
         public static IConfidentialClientApplicationExecutor CreateConfidentialClientExecutor(
-            ConfidentialClientApplication confidentialClientApplication)
+            ConfidentialClientApplication confidentialClientApplication /* _this */)
         {
             ClientApplicationBase.GuardMobileFrameworks();
 
